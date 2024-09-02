@@ -1,0 +1,31 @@
+.header {
+	position: fixed;
+	width: 100%;
+	left: 0;
+}
+
+.lowerBorderLine {
+	border-bottom: 50px groove grey;
+}
+
+.navBar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-left: 8rem;
+	margin-right: 8rem;
+	padding-top: 2rem;
+	align-items: center;
+}
+
+.flexDisplayRow {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	gap: 2rem;
+}
+
+.flexContainer {
+	display: flex;
+	justify-content: center;
+}

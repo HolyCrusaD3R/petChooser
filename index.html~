@@ -8,7 +8,7 @@
 	<script src="main.js" defer></script>
 </head>
 <body>
-	<header class="header lowerBorderLine">
+	<header class="header">
 		<div class="navBar">
 			<div class="petCategoryChooserContainer flexDisplayRow">
 				<div class="catCategory">

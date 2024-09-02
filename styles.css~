@@ -1,0 +1,15 @@
+.navBar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-left: 8rem;
+	margin-right: 8rem;
+	padding-top: 2rem;
+	text-align: center;
+}
+
+.flexDisplayRow {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
