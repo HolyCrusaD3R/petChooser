@@ -1,6 +1,10 @@
+body {
+	background-color: #F1F7ED;
+}
 .header {
 	position: fixed;
 	width: 100%;
+	top: 0;
 	left: 0;
 }
 
@@ -26,6 +30,97 @@
 }
 
 .flexContainer {
+	display: flex;margin-top: 20rem;
+	justify-content: center;
+}
+
+
+main {
+	position: absolute;
+	top: 161px;
+	left: 0;
+}
+
+.mainContainer {
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 80vh;
+}
+
+
+.petContainer {
+    position: relative;
+    background-color: #191516;
+    width: 20%;
+    height: 60%;
+    z-index: 1;
+}
+
+.btns {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    bottom: -1.5rem;
+}
+
+.btn {
+    position: relative;
+    background: #F1F7ED;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+    outline: none;
+    font-size: x-large;
+	cursor: pointer;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.btn::after, .btn::before {
+    content: "";
+	background-image: conic-gradient(from var(--angle), transparent 20%, #FF4136);
+    height: calc(100% + 20px);
+    width: calc(100% + 20px);
+    position: absolute;
+    border-radius: 100%;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn::before {
+    filter: blur(1.5rem);
+	opacity: 0.5;
+}
+
+.btn:hover::after, .btn:hover::before {
+    opacity: 1;
+    animation: 3s spin linear infinite;
+}
+
+#like::after, #like::before {
+    background-image: conic-gradient(from var(--angle), transparent 20%, #FF4136);
+}
+
+#dislike::after, #dislike::before {
+    background-image: conic-gradient(from var(--angle), transparent 20%, #0074D9);
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
 }
