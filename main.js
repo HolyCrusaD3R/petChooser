@@ -49,13 +49,13 @@ const fetchCatPhoto = async (liked) => {
             const newCatImageUrl = data[0].url;
 
             
+            liked ? likedPets.push(petContainer.style.backgroundImage.slice(4,-1)) : null;
+            liked ? syncPetsPhotos() : null;
+            console.log(likedPets);
 
             petContainer.style.backgroundImage = `url(${newCatImageUrl})`;
             petContainer.style.backgroundSize = 'cover';  
             petContainer.style.backgroundPosition = 'center'; 
-            liked ? likedPets.push(newCatImageUrl) : null;
-            liked ? syncPetsPhotos() : null;
-            console.log(likedPets);
         } catch (error) {
             console.error('Error fetching cat photo:', error);
         }
