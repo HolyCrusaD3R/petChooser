@@ -17,7 +17,30 @@ const petContainer = document.getElementById('petContainer');
 const likeButton = document.getElementById('like');
 const dislikeButton = document.getElementById('dislike');
 
+const likedPetsContainer = document.getElementById('likedPetsContainer');
+
 let likedPets = [];
+
+const syncPetsPhotos = () => {
+    const containerChildren = Array.from(likedPetsContainer.children);
+    containerChildren.forEach(child => {
+        if (!likedPets.includes(child.id)) {
+            likedPetsContainer.removeChild(child);
+        }
+    });
+
+    likedPets.forEach(petId => {
+        if (!document.getElementById(petId)) {
+        const newPetDiv = document.createElement('div');
+        newPetDiv.id = petId;
+        newPetDiv.classList.add('petContainer');
+        newPetDiv.style.backgroundImage = `url(${petId})`;
+        newPetDiv.style.backgroundSize = 'cover';
+        newPetDiv.style.backgroundPosition = 'center';
+        likedPetsContainer.appendChild(newPetDiv);
+        }
+    });
+}
 
 const fetchCatPhoto = async (liked) => {
         try {
@@ -27,35 +50,11 @@ const fetchCatPhoto = async (liked) => {
 
             
 
-            // const img = new Image();
-            // img.src = newCatImageUrl;
-
-            // img.onload = () => {
-            //     const imgWidth = img.width;
-            //     const imgHeight = img.height;
-
-            //     const viewportWidth = window.innerWidth;
-            //     const viewportHeight = window.innerHeight;
-
-            //     const maxWidth = (MAX_WIDTH_VW / 100) * viewportWidth;
-            //     const maxHeight = (MAX_HEIGHT_VH / 100) * viewportHeight;
-            //     const minWidth = (MIN_WIDTH_VW / 100) * viewportWidth;
-            //     const minHeight = (MIN_HEIGHT_VH / 100) * viewportHeight;
-
-            //     const containerWidth = Math.min(Math.max(imgWidth, minWidth), maxWidth);
-            //     const containerHeight = Math.min(Math.max(imgHeight, minHeight), maxHeight);
-
-            //     petContainer.style.width = `${containerWidth}px`;
-            //     petContainer.style.height = `${containerHeight}px`;
-            //     petContainer.style.backgroundImage = `url(${newCatImageUrl})`;
-            //     petContainer.style.backgroundSize = 'cover';  
-            //     petContainer.style.backgroundPosition = 'center';  
-            // };
-
             petContainer.style.backgroundImage = `url(${newCatImageUrl})`;
             petContainer.style.backgroundSize = 'cover';  
             petContainer.style.backgroundPosition = 'center'; 
             liked ? likedPets.push(newCatImageUrl) : null;
+            liked ? syncPetsPhotos() : null;
             console.log(likedPets);
         } catch (error) {
             console.error('Error fetching cat photo:', error);
